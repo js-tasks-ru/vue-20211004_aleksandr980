@@ -8,11 +8,6 @@ const Root = defineComponent({
       count: 0
     }
   },
-  methods: {
-    countInc: () => {
-      this.count++;
-    }
-  }
 });
 
 const app = createApp(Root);
