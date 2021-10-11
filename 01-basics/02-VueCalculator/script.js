@@ -13,8 +13,8 @@ const Root = defineComponent({
   computed: {
     result() {
       let result = 0;
-      let firstNumber = Number(this.firstNumber);
-      let secondNumber = Number(this.secondNumber);
+      let firstNumber = this.firstNumber;
+      let secondNumber = this.secondNumber;
 
       switch (this.operation) {
         case 'sum':
