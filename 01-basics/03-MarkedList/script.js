@@ -40,23 +40,10 @@ const Root = defineComponent({
   },
   computed: {
     filteredEmails() {
-      let result = [];
-      let search = this.search;
-
-      emails.forEach(function(item, i, arr) {
-        let lighting = false;
-
-        if (search && item.toLowerCase().includes(search.toLowerCase())) {
-          lighting = true;
-        }
-
-        result.push({
-          lighting: lighting,
-          email: item
-        });
-      });
-
-      return result;
+      return this.emails.map((item) => ({
+        lighting: this.search && item.toLowerCase().includes(this.search.toLowerCase()),
+        email: item,
+      }));
     }
   },
 });
