@@ -16,7 +16,7 @@ export default defineComponent({
   template: `
     <div
       class="meetup-cover"
-      v-bind:style="[image ? {'--bg-url': 'url(' + image + ')'} : {'--bg-url': 'url(https://course-vue.javascript.ru/api/images/2)'}]"
+      v-bind:style="[image ? {'--bg-url': 'url(' + image + ')'} : {}]"
     >
         <h1 class="meetup-cover__title">{{ title }}</h1>
     </div>`,
