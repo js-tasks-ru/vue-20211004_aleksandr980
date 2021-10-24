@@ -9,29 +9,29 @@ export default defineComponent({
       reqiired: true
     }
   },
-  methods: {
-    title(agentaItem) {
-      if (agentaItem.title) {
-        return agentaItem.title
+  computed: {
+    title() {
+      if (this.agendaItem.title) {
+        return this.agendaItem.title;
       }
 
-      return agendaItemDefaultTitles[agentaItem.type];
+      return agendaItemDefaultTitles[this.agendaItem.type];
     },
-    icon(agentaItem) {
-      return agendaItemIcons[agentaItem.type];
+    icon() {
+      return agendaItemIcons[this.agendaItem.type];
     },
   },
   template: `
     <div class="agenda-item">
       <div class="agenda-item__col">
-        <img :src="'/src/assets/icons/icon-' + icon(agendaItem) + '.svg'" class="icon" alt="key" />
+        <img :src="'/src/assets/icons/icon-' + icon + '.svg'" class="icon" alt="key" />
       </div>
       <div class="agenda-item__col">
         {{ agendaItem.startsAt }} - {{ agendaItem.endsAt }}
       </div>
       <div class="agenda-item__col">
         <h3 class="agenda-item__title">
-          {{ title(agendaItem) }}
+          {{ title }}
         </h3>
         <template v-if="agendaItem.type === 'talk'">
           <p class="agenda-item__talk">

@@ -16,39 +16,22 @@ export default defineComponent({
       required: true
     }
   },
-  methods: {
-    addZero: (num) => {
-      let result = num;
-      if (num >= 0 && num <= 9) {
-        result = '0' + num;
-      }
-
-      return result;
-    }
-  },
   computed: {
-    datetime() {
-      let dateObject = new Date(this.date);
-      return dateObject.getFullYear() + '-'
-        + this.addZero(dateObject.getMonth() + 1)
-        + '-'
-        + this.addZero(dateObject.getUTCDate());
+    formatAsLocalDate() {
+      return new Date(this.date).toLocaleString(navigator.language, {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
     },
-    dateString() {
-      let dateObject = new Date(this.date);
-      // , month: "short", day: "numeric" }
-      return dateObject.toLocaleDateString('en', {month: "short"})
-        + ' '
-        + dateObject.getUTCDate()
-        + ', '
-        + dateObject.toLocaleDateString('en', {year: "numeric"});
+    formatAsIsoDate() {
+      return new Date(this.date).toISOString().split('T')[0];
     }
   },
   template: `
     <ul class="meetup-info">
       <li>
         <img class="icon meetup-info__icon" alt="icon" src="/assets/icons/icon-user.svg" />
-        {{ date }}
         {{ organizer }}
       </li>
       <li>
@@ -57,8 +40,8 @@ export default defineComponent({
       </li>
       <li>
         <img class="icon meetup-info__icon" alt="icon" src="/assets/icons/icon-cal-lg.svg" />
-        <time :datetime="datetime">
-          {{ dateString }}
+        <time :datetime="formatAsIsoDate">
+          {{ formatAsLocalDate }}
         </time>
       </li>
     </ul>`,

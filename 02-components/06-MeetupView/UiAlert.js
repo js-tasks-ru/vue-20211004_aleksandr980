@@ -5,6 +5,6 @@ export default defineComponent({
 
   template: `
     <div class="alert">
-      <slot>Программа пока пуста...</slot>
+      <slot>No data...</slot>
     </div>`,
 });
